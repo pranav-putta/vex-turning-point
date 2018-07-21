@@ -1,4 +1,3 @@
-#include "stdio.h"
 #include <stdbool.h>
 
 #ifndef MAX
@@ -7,15 +6,15 @@
 
 enum HeapMode {min, max};
 
-struct HeapNode {
+typedef struct HeapNode {
   int key, value;
-};
+} HeapNode;
 
-struct Heap {
+typedef struct Heap {
     int size;
-    struct HeapNode *arr;
-    enum HeapMode mode;
-};
+    HeapNode *arr;
+    HeapMode mode;
+} Heap;
 
 // FUNCTIONS
 
@@ -40,7 +39,7 @@ bool has_left(struct Heap *heap, int parentIndex);
 bool has_right(struct Heap *heap, int parentIndex);
 
 /* Helper methods */
-void swap_nodes(struct Heap *heap, int i, int j);
+void swap_nodes(struct HeapNode *i, struct HeapNode *j);
 void ensure_array_capacity(struct Heap *heap);
 
 /* Accessor methods */
