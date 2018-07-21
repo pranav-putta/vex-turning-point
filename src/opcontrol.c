@@ -30,7 +30,12 @@
  * This task should never exit; it should end with some kind of infinite loop, even if empty.
  */
 void operatorControl() {
+	int power, turn;
 	while (1) {
+		power = joystickGetAnalog(1, 2);
+		turn = joystickGetAnalog(1, 1);
+
+		motorSet(2, power + turn);
 		delay(20);
 	}
 }

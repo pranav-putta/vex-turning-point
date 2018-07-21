@@ -27,8 +27,5 @@
  * so, the robot will await a switch to another mode or disable/enable cycle.
  */
 void autonomous() {
-  while (true) {
-    int distance = ultrasonicGet(sonar);
-    printf("%d", distance);
-  }
+  
 }
