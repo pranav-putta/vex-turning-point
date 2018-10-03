@@ -1,0 +1,2 @@
+16
+{"last_modification_time":1535575761,"language":0,"import_file":"c:/users/pputta0/documents/vex/src/lcd/lcdcontrol.cpp","args_hash":8781228389036658703,"includes":[],"dependencies":[],"skipped_by_preprocessor":["5:1-486:7"],"types":[],"funcs":[],"vars":[{"id":0,"usr":9320739695544202545,"detailed_name":"BCI_LCDCONTROL_C_INCLUDED","short_name_offset":0,"short_name_size":25,"hover":"#define BCI_LCDCONTROL_C_INCLUDED","comments":"","declarations":[],"spell":"2:9-2:34|-1|1|2","extent":"2:9-2:34|-1|1|0","uses":[],"kind":255,"storage":0}]}
