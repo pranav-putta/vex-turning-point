@@ -30,10 +30,22 @@ enum MotorType {
 /* Motor definition */
 struct Motor {
 
+public:
   int port;
   MotorType type;
-  pros::Motor *motor;
 
+  // Default constructor
+  Motor() {};
+
+  // Paramterized constructor
+  Motor(int p, MotorType t) {
+    port = p;
+    type = t;
+  };
+
+  pros::Motor getMtr() {
+    return pros::Motor(port);
+  }
 };
 
 
@@ -47,6 +59,14 @@ public:
    * @return                             [voltage between [-127, 127]]
    */
   static int convertSpeedToVoltage(float speed);
+
+  /**
+   * Converts distance in meters to encoder ticks for motor usage.
+   * @method convertDistanceToEncoder
+   * @param  distance                 [description]
+   * @return                          [description]
+   */
+  static float convertDistanceToEncoder(float distance);
 
   /**
    * Use experimental test to find the slope of voltage vs rpm relationship

@@ -15,6 +15,10 @@
  * task, not resume it from where it left off.
  */
 void opcontrol() {
+
+	// 1. Calculate voltage coefficients
+	// 2. Calculate gear ratio, wheel radius, and encoder clicks per rotations
+	// 3. drive and test if velocity is maintained and distance is solid
 	Controller c = Controller();
 	c.linearMotionDrive(10, 10, FORWARD);
 }

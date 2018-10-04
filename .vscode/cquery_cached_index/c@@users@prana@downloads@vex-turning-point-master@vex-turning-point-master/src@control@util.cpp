@@ -2,7 +2,7 @@
 
 int util::convertSpeedToVoltage(float speed) {
   // Convert from m/s to rotatations/min
-  double w = (speed * 30) / (M_PI * DRIVE_WHEEL_RADIUS);
+  double w = (speed * 30) * DRIVE_GEAR_RATIO / (M_PI * DRIVE_WHEEL_RADIUS);
   // Convert rotations/min to clicks per rotation
   w *= DRIVE_ENCODER_CLICKS_PER_ROTATION;
 
@@ -11,6 +11,11 @@ int util::convertSpeedToVoltage(float speed) {
   voltage += DRIVE_VOLTAGE_REGRESSION_B1;
 
   return voltage;
+}
+
+float util::convertDistanceToEncoder(float distance) {
+  float rotations = distance / (2 * M_PI * DRIVE_WHEEL_RADIUS);
+  return rotations * DRIVE_ENCODER_CLICKS_PER_ROTATION;
 }
 
 std::pair<float, float> util::calculateVoltageCoefficient(pros::Motor lb, pros::Motor lf, pros::Motor rb, pros::Motor rf) {
@@ -48,7 +53,7 @@ std::pair<float, float> util::calculateVoltageCoefficient(pros::Motor lb, pros::
     x[i] = i;
   }
 
-  std::pair<float, float> regression = calculateRegressionLine(x, vals, dataSize);
+  return calculateRegressionLine(x, vals, dataSize);
 }
 
 std::pair<float, float> util::calculateRegressionLine(float *x, float *y, int dataSize) {
