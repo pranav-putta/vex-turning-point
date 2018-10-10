@@ -13,20 +13,25 @@ namespace robot::controller {
     portBR = portBR_;
 
     // Create chassis
-    auto chassis = okapi::ChassisControllerFactory::create(
+    chassisController = make_unique<okapi::ChassisController>(okapi::ChassisControllerFactory::create(
       {portTL, portBL}, // Left motors
       {portTR, portBR}, // Right motors
       okapi::AbstractMotor::gearset::red, // torque gearset
       {wheelSize, baseSize} // wheel radius, base width
-    );
-    chassisController = make_unique<okapi::AsyncMotionProfileController>(
-      okapi::AsyncControllerFactory::motionProfile(1.0, 2.0, 10.0, chassis));
-
+    ));
+    chassisMotionProfiler = make_unique<okapi::AsyncMotionProfileController>(
+      okapi::AsyncControllerFactory::motionProfile(1.0, 2.0, 10.0, *chassisController.get()));
   }
 
   // TODO: Implement
   void DriveController::moveLinear(float dist, float speed) {
 
+  }
+
+  void DriveController::moveOnPath(initializer_list<okapi::Point> path) {
+    chassisMotionProfiler->generatePath(path, "Path motion");
+    chassisMotionProfiler->setTarget("Path motion");
+    chassisMotionProfiler->waitUntilSettled();
   }
 
   // Lift Controller class definition

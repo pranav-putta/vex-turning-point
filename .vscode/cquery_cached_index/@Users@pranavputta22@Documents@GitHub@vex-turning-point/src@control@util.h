@@ -24,39 +24,11 @@ namespace robot::util {
     };
 
     /**
-     * Structure for position object
-     * Stores (x, y) coordinate of robot and angle relative to start
-     */
-    struct Position {
-      float x, y, theta;
-
-      /**
-       * Default position constructor, initializes all variables to 0
-       */
-      Position();
-
-      /**
-       * Create position object with initial values
-       * @param x_     X coordinate
-       * @param y_     Y coordinate
-       * @param theta_ Angle of turn
-       */
-      Position(float x_, float y_, float theta_);
-    };
-
-    /**
      * Manages odometry data and position tracking of robot
      */
     class PositionManager {
     public:
       PositionManager();
-    private:
-      // Start position of robot
-      unique_ptr<Position> startPos;
-      // Last calculated position of robot
-      unique_ptr<Position> lastPos;
-      // Current calculated position of robot
-      unique_ptr<Position> currentPos;
 
       /**
        * Updates current position calculation
@@ -66,6 +38,67 @@ namespace robot::util {
        * @param rbEncoder Back Right Wheel Encoder value
        */
       void updateCalculation(int tlEncoder, int blEncoder, int trEncoder, int brEncoder);
+
+      /**
+       * Retrieve current position of robot
+       * @return [Point holding current position]
+       */
+      okapi::Point& getCurrentPosition();
+    private:
+      // Start position of robot
+      unique_ptr<okapi::Point> startPos;
+      // Last calculated position of robot
+      unique_ptr<okapi::Point> lastPos;
+      // Current calculated position of robot
+      unique_ptr<okapi::Point> currentPos;
+    };
+
+    /**
+     * PathManager holds the map of the field as a matrix
+     * Allows
+     */
+    class PathManager {
+    public:
+      /**
+       * Function that returns the only instance of Path Manager.
+       * Creates a new instance if does not exist already
+       * @return [description]
+       */
+      static PathManager& instance();
+
+      /**
+       * Uses Dijkstra's algorithm to find the shortest path between two points
+       * @param  initial [Initial position]
+       * @param  target [Target position]
+       * @return    [a generated path of points]
+       */
+      initializer_list<okapi::Point> calculateShortestPath(okapi::Point &initial, okapi::Point &target);
+
+      /**
+       * Calculates launch speed needed using kinematics
+       * @param  current [current position]
+       * @param  target [target flag]
+       * @return         [V0 initial velocity of ball]
+       */
+      okapi::QSpeed calculateLaunchSpeed(okapi::Point &current, Flag &target);
+
+      /**
+       * Calculates launch base angle needed using trigonometry
+       * @param  current [current position]
+       * @param  target [target flag]
+       * @return         [angle needed from base]
+       */
+      okapi::QAngle calculateLaunchBaseAngle(okapi::Point &current, Flag &target);
+
+    private:
+      // Default constructor private
+      PathManager();
+      // Copy and assignment operators private
+      PathManager(PathManager const&){};
+      //PathManager& operator=(PathManager const&) {}
+      // instance
+      static unique_ptr<PathManager> m_pInstance;
+
     };
   }
 #endif

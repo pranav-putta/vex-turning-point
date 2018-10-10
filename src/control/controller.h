@@ -18,9 +18,23 @@ namespace robot::controller {
      * Default motion controller constructor, initializes with pointer to chasis controller
      */
     DriveController(int portTL_, int portTR_, int portBL_, int portBR_, double wheelSize_, double baseSize_);
+
+    /**
+     * Moves the robot along suggested path
+     * @param path [description]
+     */
+    void moveOnPath(initializer_list<okapi::Point> path);
+
+    /**
+     * Turns the robot theta degrees
+     * @param theta [target delta angle]
+     */
+    void pointTurn(okapi::QAngle theta);
+
   private:
     // Internal chassis controller
-    unique_ptr<okapi::AsyncMotionProfileController> chassisController;
+    unique_ptr<okapi::ChassisController> chassisController;
+    unique_ptr<okapi::AsyncMotionProfileController> chassisMotionProfiler;
 
     // Motor Ports
     int portTL;
@@ -78,12 +92,15 @@ namespace robot::controller {
      * @param port [flywheel motor port]
      */
     LauncherController(int port);
+
+    void startFlyWheel();
   private:
     //Internal Controller
     unique_ptr<okapi::AsyncPosPIDController> flyWheelControl;
 
     // Flywheel motor port
     int port;
+
   };
 
 }

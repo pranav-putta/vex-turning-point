@@ -4,31 +4,48 @@ using namespace std;
 
 namespace robot::util {
 
-  // Position struct definition
-  Position::Position() {
-    x = 0;
-    y = 0;
-    theta = 0;
-  }
-
-  Position::Position(float x_, float y_, float theta_) {
-    x = x_;
-    y = y_;
-    theta = theta_;
-  }
-
-  // Position Manager class definition
+  /// Position Manager class definition ///
 
   PositionManager::PositionManager() {
     // Initialize all members to default
-    startPos = make_unique<Position>(Position());
-    lastPos = make_unique<Position>(Position());
-    currentPos = make_unique<Position>(Position());
+    startPos = make_unique<okapi::Point>(okapi::Point());
+    lastPos = make_unique<okapi::Point>(okapi::Point());
+    currentPos = make_unique<okapi::Point>(okapi::Point());
   }
 
   // TODO: implement
   void PositionManager::updateCalculation(int tlEncoder, int blEncoder,
                                               int trEncoder, int lrEncoder) {
+
+  }
+
+  okapi::Point& PositionManager::getCurrentPosition() {
+    return *currentPos.get();
+  }
+
+  /// Path Manager class definition ///
+  unique_ptr<PathManager> PathManager::m_pInstance = NULL;
+
+  PathManager& PathManager::instance() {
+    // Check if instance is running
+    if (!m_pInstance) {
+      m_pInstance = make_unique<PathManager>(PathManager());
+    }
+
+    return *m_pInstance.get();
+  }
+
+  //TODO: Implement
+  initializer_list<okapi::Point> PathManager::calculateShortestPath(okapi::Point &initial, okapi::Point &target) {
+  }
+
+  //TODO: Implement
+  okapi::QSpeed PathManager::calculateLaunchSpeed(okapi::Point &initial, Flag &target) {
+
+  }
+
+  //TODO: implement
+  okapi::QAngle PathManager::calculateLaunchBaseAngle(okapi::Point &initial, Flag &target) {
 
   }
 }

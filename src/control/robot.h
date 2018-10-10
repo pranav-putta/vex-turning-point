@@ -40,27 +40,27 @@ namespace robot {
 
     /**
      * Creates a path for the robot to move to the new location
-     * @param newPosition [Position to move to]
+     * @param newPoint [Point to move to]
      */
-    void moveTo(util::Position newPosition);
+    void moveTo(okapi::Point& newPoint);
 
     /**
      * Launches a ball to the specified flag, and auto aligns itself
      * @param flag      [the target flag]
      */
-    void launchAutoAlign(util::Flag target);
+    void launchAutoAlign(util::Flag& target);
 
     /**
      * Launches a ball with the specified speed
      * @param speed [intial velocity of ball]
      */
-    void launch(double speed);
+    void launch(double& speed);
 
     /**
      * Places the cap on the specified post
      * @param target [type of post to place the cap]
      */
-    void placeOnPost(util::Post target);
+    void placeOnPost(util::Post& target);
 
     /**
      * Flips cap using claw
