@@ -8,9 +8,9 @@ namespace robot::util {
 
   PositionManager::PositionManager() {
     // Initialize all members to default
-    startPos = make_unique<okapi::Point>(okapi::Point());
-    lastPos = make_unique<okapi::Point>(okapi::Point());
-    currentPos = make_unique<okapi::Point>(okapi::Point());
+    startPos = make_unique<okapi::Point>();
+    lastPos = make_unique<okapi::Point>();
+    currentPos = make_unique<okapi::Point>();
   }
 
   // TODO: implement

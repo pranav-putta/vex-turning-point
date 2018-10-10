@@ -1,11 +1,12 @@
 #include "controller.h"
 using namespace std;
+using namespace okapi;
 
 namespace robot::controller {
 
   // Driver controller class definition
 
-  DriveController::DriveController(int portTL_, int portTR_, int portBL_, int portBR_, double wheelSize, double baseSize) {
+  DriveController::DriveController(int8_t portTL_, int8_t portTR_, int8_t portBL_, int8_t portBR_, double wheelSize, double baseSize) {
     // Initialize port definitions
     portTL = portTL_;
     portTR = portTR_;
@@ -13,14 +14,16 @@ namespace robot::controller {
     portBR = portBR_;
 
     // Create chassis
-    chassisController = make_unique<okapi::ChassisController>(okapi::ChassisControllerFactory::create(
+    auto chassis = okapi::ChassisControllerFactory::create(
       {portTL, portBL}, // Left motors
       {portTR, portBR}, // Right motors
       okapi::AbstractMotor::gearset::red, // torque gearset
       {wheelSize, baseSize} // wheel radius, base width
-    ));
-    chassisMotionProfiler = make_unique<okapi::AsyncMotionProfileController>(
-      okapi::AsyncControllerFactory::motionProfile(1.0, 2.0, 10.0, *chassisController.get()));
+    );
+    chassisController = &chassis;
+
+    auto profiler = okapi::AsyncControllerFactory::motionProfile(1.0, 2.0, 10.0, *chassisController);
+    chassisMotionProfiler = &profiler;
   }
 
   // TODO: Implement
@@ -28,8 +31,10 @@ namespace robot::controller {
 
   }
 
-  void DriveController::moveOnPath(initializer_list<okapi::Point> path) {
-    chassisMotionProfiler->generatePath(path, "Path motion");
+  void DriveController::moveOnPath(vector<okapi::Point> path) {
+    // TODO: convert path to an initializer list
+    chassisMotionProfiler->generatePath({
+      okapi::Point{0_ft, 0_ft, 0_deg}}, "Path motion");
     chassisMotionProfiler->setTarget("Path motion");
     chassisMotionProfiler->waitUntilSettled();
   }

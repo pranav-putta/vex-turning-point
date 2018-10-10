@@ -93,9 +93,6 @@ namespace robot::util {
     private:
       // Default constructor private
       PathManager();
-      // Copy and assignment operators private
-      PathManager(PathManager const&){};
-      //PathManager& operator=(PathManager const&) {}
       // instance
       static unique_ptr<PathManager> m_pInstance;
 

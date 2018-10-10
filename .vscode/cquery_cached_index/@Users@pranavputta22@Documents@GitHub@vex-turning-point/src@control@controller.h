@@ -17,13 +17,13 @@ namespace robot::controller {
     /**
      * Default motion controller constructor, initializes with pointer to chasis controller
      */
-    DriveController(int portTL_, int portTR_, int portBL_, int portBR_, double wheelSize_, double baseSize_);
+    DriveController(int8_t portTL_, int8_t portTR_, int8_t portBL_, int8_t portBR_, double wheelSize_, double baseSize_);
 
     /**
      * Moves the robot along suggested path
      * @param path [description]
      */
-    void moveOnPath(initializer_list<okapi::Point> path);
+    void moveOnPath(vector<okapi::Point> path);
 
     /**
      * Turns the robot theta degrees
@@ -33,14 +33,14 @@ namespace robot::controller {
 
   private:
     // Internal chassis controller
-    unique_ptr<okapi::ChassisController> chassisController;
-    unique_ptr<okapi::AsyncMotionProfileController> chassisMotionProfiler;
+    okapi::ChassisControllerIntegrated *chassisController;
+    okapi::AsyncMotionProfileController *chassisMotionProfiler;
 
     // Motor Ports
-    int portTL;
-    int portTR;
-    int portBL;
-    int portBR;
+    int8_t portTL;
+    int8_t portTR;
+    int8_t portBL;
+    int8_t portBR;
 
     /**
      * Moves the robot linearly, backwards or forward
