@@ -1,6 +1,7 @@
 #include "util.h"
 
 using namespace std;
+using namespace okapi;
 
 namespace robot::util {
 
@@ -13,10 +14,23 @@ namespace robot::util {
     currentPos = make_unique<okapi::Point>();
   }
 
-  // TODO: implement
+  // TODO:
+  // 900 ticks per revolution
   void PositionManager::updateCalculation(int tlEncoder, int blEncoder,
                                               int trEncoder, int lrEncoder) {
+      double encoderFactor = ((4 * M_PI) / 900);
+      double displacement = (tlEncoder + blEncoder + trEncoder + lrEncoder) * encoderFactor;
+      QAngle theta (((trEncoder + lrEncoder) - (tlEncoder +blEncoder)) * (encoderFactor / 12));
 
+      QLength dx (displacement * cos((currentPos->theta + theta / 2).getValue()));
+      QLength dy (displacement * sin((currentPos->theta + theta / 2).getValue()));
+
+      lastPos = std::move(currentPos);
+      dx += lastPos->x;
+      dy += lastPos ->y;
+      theta += lastPos->theta;
+
+      currentPos = std::make_unique<okapi::Point>(dx, dy, theta);
   }
 
   okapi::Point& PositionManager::getCurrentPosition() {

@@ -39,6 +39,16 @@ namespace robot::controller {
     chassisMotionProfiler->waitUntilSettled();
   }
 
+  //TODO: implement
+  void DriveController::pointTurn(okapi::QAngle angle) {
+
+  }
+
+  void DriveController::tankDrive(pros::Controller &controller) {
+    chassisController->tank(controller.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y),
+                            -controller.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_Y));
+  }
+
   // Lift Controller class definition
   //TODO: Finish implementation of this, finish initialization of controller
   LiftController::LiftController(int port1_, int port2_) {

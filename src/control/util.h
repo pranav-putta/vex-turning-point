@@ -2,6 +2,7 @@
 #define UTIL_H_
 
 #include "main.h"
+#include <math.h>
 using namespace std;
 
 // Utilities for robot namespace

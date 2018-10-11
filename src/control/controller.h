@@ -31,6 +31,12 @@ namespace robot::controller {
      */
     void pointTurn(okapi::QAngle theta);
 
+    /**
+     * Turns on tank drive for the robot
+     * @param controller [Master controller]
+     */
+    void tankDrive(pros::Controller &controller);
+
   private:
     // Internal chassis controller
     okapi::ChassisControllerIntegrated *chassisController;

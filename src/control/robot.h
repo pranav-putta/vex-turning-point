@@ -7,6 +7,7 @@
 #include "controller.h"
 
 using namespace std;
+using namespace okapi;
 
 // Robot Constants
 #define MTR_PORT_TOP_LEFT 1
@@ -39,10 +40,22 @@ namespace robot {
     void updatePosition();
 
     /**
+     * Gets the current position of the robot
+     */
+    
+    Point* getCurrentPosition();
+
+    /**
      * Creates a path for the robot to move to the new location
      * @param newPoint [Point to move to]
      */
     void moveTo(okapi::Point& newPoint);
+
+    /**
+     * Moves to the inputted location using internal controllers
+     * @param newPoint [Point to move to]
+     */
+    void moveRaw(okapi::Point& newPoint);
 
     /**
      * Launches a ball to the specified flag, and auto aligns itself
@@ -77,6 +90,12 @@ namespace robot {
      * @param input [inputs from remote controller]
      */
     void executeRemoteInput(int input[]);
+
+    /**
+     * Calls the driver controller tank drive function
+     * @param controller [description]
+     */
+    void tankDrive(pros::Controller &controller);
 
 
   private:

@@ -1,6 +1,7 @@
 #include "robot.h"
 
 using namespace std;
+using namespace okapi;
 
 namespace robot {
   // Core class definition
@@ -21,12 +22,19 @@ namespace robot {
 
   }
 
+  Point* Core::getCurrentPosition() {
+    return &positionManager->getCurrentPosition();
+  }
+
   void Core::moveTo(okapi::Point& newPos) {
       // Generate a path to new position
       okapi::Point& current = positionManager->getCurrentPosition();
       initializer_list<okapi::Point> path = util::PathManager::instance().calculateShortestPath(current, newPos);
 
       driveController->moveOnPath(path);
+  }
+
+  void Core::moveRaw(okapi::Point& newPos) {
   }
 
   void Core::launchAutoAlign(util::Flag& target) {
@@ -55,5 +63,9 @@ namespace robot {
 
   void Core::executeRemoteInput(int input[]) {
 
+  }
+
+  void Core::tankDrive(pros::Controller &controller) {
+    driveController->tankDrive(controller);
   }
 }
