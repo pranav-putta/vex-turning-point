@@ -25,13 +25,18 @@ namespace robot::util {
       QLength dx (displacement * cos((currentPos->theta + theta / 2).getValue()));
       QLength dy (displacement * sin((currentPos->theta + theta / 2).getValue()));
 
-      lastPos = std::move(currentPos);
+      lastPos->x = currentPos->x;
+      lastPos->y = currentPos->y;
+      lastPos->theta = currentPos->theta;
+
       dx += lastPos->x;
       dy += lastPos ->y;
       theta += lastPos->theta;
 
-      currentPos = std::make_unique<okapi::Point>(dx, dy, theta);
-  }
+      currentPos->x = dx;
+      currentPos->y = dy;
+      currentPos->theta = theta;
+      }
 
   okapi::Point& PositionManager::getCurrentPosition() {
     return *currentPos.get();

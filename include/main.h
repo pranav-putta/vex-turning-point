@@ -40,9 +40,6 @@
  * You should add more #includes here
  */
 #include "okapi/api.hpp"
-#include <map>
-#include <vector>
-#include <chrono>
 //#include "pros/api_legacy.h"
 
 /**
