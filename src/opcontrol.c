@@ -11,6 +11,10 @@
  */
 
 #include "main.h"
+
+#include "MotionProfile.h"
+#include "PidController.h"
+
 /*
  * Runs the user operator control code. This function will be started in its own task with the
  * default priority and stack size whenever the robot is enabled via the Field Management System
@@ -29,14 +33,23 @@
  * This task should never exit; it should end with some kind of infinite loop, even if empty.
  */
 void operatorControl() {
-	while (1) {
-		if (joystickGetDigital(1, 5, JOY_DOWN)) {
-			Waypoint current = {0, 0, d2r(45)};
-			Waypoint end = {2, 2, 0};
+	MotionProfile profile;
+	MotionProfileInit(&profile);
+	MotionProfileEasyParams(&profile, 2, 1, 2);
 
-			driveToPoint(&current, &end);
+  float time = 0;
+  float dt = 0.02;
 
-		}
-		delay(20);
-	}
+  PID pid;
+  PIDInit(&pid, 0,0,0);
+
+	float dist = 0;
+
+  while(!MotionProfileIsComplete(&profile, time)) {
+    float velocity = MotionProfileCompute(&profile, time);
+		dist = (velocity) * 0.02;
+    time += dt;
+  }
+
+	printf("Distance travelled %f", dist);
 }

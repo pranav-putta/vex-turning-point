@@ -22,7 +22,10 @@
 #define API_H_
 
 // System includes
-#include <libs.h>
+#include <stdlib.h>
+#include <stdbool.h>
+#include <stdarg.h>
+#include <stdint.h>
 
 // Begin C++ extern to C
 #ifdef __cplusplus
