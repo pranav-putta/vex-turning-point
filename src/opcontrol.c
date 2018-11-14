@@ -10,10 +10,8 @@
  * obtained from http://sourceforge.net/projects/freertos/files/ or on request.
  */
 
-#include "main.h"
-
-#include "MotionProfile.h"
-#include "PidController.h"
+#include "opcontrol.h"
+#include "robot.h"
 
 /*
  * Runs the user operator control code. This function will be started in its own task with the
@@ -32,24 +30,8 @@
  *
  * This task should never exit; it should end with some kind of infinite loop, even if empty.
  */
+
+ // Mappings
 void operatorControl() {
-	MotionProfile profile;
-	MotionProfileInit(&profile);
-	MotionProfileEasyParams(&profile, 2, 1, 2);
 
-  float time = 0;
-  float dt = 0.02;
-
-  PID pid;
-  PIDInit(&pid, 0,0,0);
-
-	float dist = 0;
-
-  while(!MotionProfileIsComplete(&profile, time)) {
-    float velocity = MotionProfileCompute(&profile, time);
-		dist = (velocity) * 0.02;
-    time += dt;
-  }
-
-	printf("Distance travelled %f", dist);
 }

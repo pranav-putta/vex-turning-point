@@ -10,7 +10,7 @@
  * obtained from http://sourceforge.net/projects/freertos/files/ or on request.
  */
 
-#include "main.h"
+#include "auto.h"
 
 /*
  * Runs the user autonomous code. This function will be started in its own task with the default
@@ -27,4 +27,37 @@
  * so, the robot will await a switch to another mode or disable/enable cycle.
  */
 void autonomous() {
+  MotionProfileInit(&autonMotionProfiler);
+
+  switch (auton) {
+    case 1:
+      auton1();
+      break;
+  }
+}
+
+void auton1() {
+  // ~2 seconds
+  launchBall(FLAG_HIGH);
+
+  // Flip cap and get ball
+  turnAngle(-90);
+  setIntake(true);
+  drive(&autonMotionProfiler, 1.7);
+  drive(&autonMotionProfiler, -1.7);
+
+  // Hit bottom flag
+  turnAngle(90);
+  launchBall(FLAG_LOW);
+  drive(&autonMotionProfiler, 2);
+  drive(&autonMotionProfiler, -0.5);
+
+  // Flip cap
+  turnAngle(-90);
+  drive(&autonMotionProfiler, 1.7);
+  drive(&autonMotionProfiler, -0.5);
+
+  // Get on platform
+  turnAngle(-90);
+  driveOntoPlatform(&autonMotionProfiler, 2);
 }
