@@ -33,5 +33,21 @@
 
  // Mappings
 void operatorControl() {
+  while (true) {
+    // Tank drive
+    motorSet(MTR_L, joystickGetAnalog(1, 2));
+    motorSet(MTR_R, -joystickGetAnalog(1, 4));
 
+    // Lift up PID
+    if (joystickGetDigital(1, 6, JOY_UP)) {
+      motorSet(MTR_LIFT_1, 127);
+      motorSet(MTR_LIFT_2, 127);
+    } else if (joystickGetDigital(1, 6, JOY_DOWN)) {
+      motorSet(MTR_LIFT_1, 0);
+      motorSet(MTR_LIFT_2, 0);
+    }
+
+
+    delay(20);
+  }
 }
