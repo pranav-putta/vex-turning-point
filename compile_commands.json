@@ -25,10 +25,42 @@
             "-fdiagnostics-color",
             "--std=gnu++17",
             "-o",
+            "bin/opcontrol.cpp.o",
+            "src/opcontrol.cpp"
+        ],
+        "directory": "/Users/pranavputta/Downloads/vex-turning-point-master",
+        "file": "src/opcontrol.cpp"
+    },
+    {
+        "arguments": [
+            "clang++",
+            "-c",
+            "-target",
+            "armv7ar-none-none-eabi",
+            "-isystem/usr/local/Caskroom/gcc-arm-embedded/8-2018-q4-major/gcc-arm-none-eabi-8-2018-q4-major/bin/../lib/gcc/arm-none-eabi/8.2.1/../../../../arm-none-eabi/include/c++/8.2.1",
+            "-isystem/usr/local/Caskroom/gcc-arm-embedded/8-2018-q4-major/gcc-arm-none-eabi-8-2018-q4-major/bin/../lib/gcc/arm-none-eabi/8.2.1/../../../../arm-none-eabi/include/c++/8.2.1/arm-none-eabi/thumb/v7+fp/softfp",
+            "-isystem/usr/local/Caskroom/gcc-arm-embedded/8-2018-q4-major/gcc-arm-none-eabi-8-2018-q4-major/bin/../lib/gcc/arm-none-eabi/8.2.1/../../../../arm-none-eabi/include/c++/8.2.1/backward",
+            "-isystem/usr/local/Caskroom/gcc-arm-embedded/8-2018-q4-major/gcc-arm-none-eabi-8-2018-q4-major/bin/../lib/gcc/arm-none-eabi/8.2.1/include",
+            "-isystem/usr/local/Caskroom/gcc-arm-embedded/8-2018-q4-major/gcc-arm-none-eabi-8-2018-q4-major/bin/../lib/gcc/arm-none-eabi/8.2.1/include-fixed",
+            "-isystem/usr/local/Caskroom/gcc-arm-embedded/8-2018-q4-major/gcc-arm-none-eabi-8-2018-q4-major/bin/../lib/gcc/arm-none-eabi/8.2.1/../../../../arm-none-eabi/include",
+            "-iquote./include",
+            "-iquote./include/./",
+            "-mcpu=cortex-a9",
+            "-mfpu=neon-fp16",
+            "-mfloat-abi=softfp",
+            "-D_POSIX_THREADS",
+            "-D_UNIX98_THREAD_MUTEX_ATTRIBUTES",
+            "-Os",
+            "-funwind-tables",
+            "-ffunction-sections",
+            "-fdata-sections",
+            "-fdiagnostics-color",
+            "--std=gnu++17",
+            "-o",
             "bin/initialize.cpp.o",
             "src/initialize.cpp"
         ],
-        "directory": "/Users/pranavputta/Documents/vex",
+        "directory": "/Users/pranavputta/Downloads/vex-turning-point-master",
         "file": "src/initialize.cpp"
     },
     {
@@ -60,7 +92,7 @@
             "bin/autonomous.cpp.o",
             "src/autonomous.cpp"
         ],
-        "directory": "/Users/pranavputta/Documents/vex",
+        "directory": "/Users/pranavputta/Downloads/vex-turning-point-master",
         "file": "src/autonomous.cpp"
     },
     {
@@ -92,40 +124,8 @@
             "bin/odometry.cpp.o",
             "src/odometry.cpp"
         ],
-        "directory": "/Users/pranavputta/Documents/vex",
+        "directory": "/Users/pranavputta/Downloads/vex-turning-point-master",
         "file": "src/odometry.cpp"
-    },
-    {
-        "arguments": [
-            "clang++",
-            "-c",
-            "-target",
-            "armv7ar-none-none-eabi",
-            "-isystem/usr/local/Caskroom/gcc-arm-embedded/8-2018-q4-major/gcc-arm-none-eabi-8-2018-q4-major/bin/../lib/gcc/arm-none-eabi/8.2.1/../../../../arm-none-eabi/include/c++/8.2.1",
-            "-isystem/usr/local/Caskroom/gcc-arm-embedded/8-2018-q4-major/gcc-arm-none-eabi-8-2018-q4-major/bin/../lib/gcc/arm-none-eabi/8.2.1/../../../../arm-none-eabi/include/c++/8.2.1/arm-none-eabi/thumb/v7+fp/softfp",
-            "-isystem/usr/local/Caskroom/gcc-arm-embedded/8-2018-q4-major/gcc-arm-none-eabi-8-2018-q4-major/bin/../lib/gcc/arm-none-eabi/8.2.1/../../../../arm-none-eabi/include/c++/8.2.1/backward",
-            "-isystem/usr/local/Caskroom/gcc-arm-embedded/8-2018-q4-major/gcc-arm-none-eabi-8-2018-q4-major/bin/../lib/gcc/arm-none-eabi/8.2.1/include",
-            "-isystem/usr/local/Caskroom/gcc-arm-embedded/8-2018-q4-major/gcc-arm-none-eabi-8-2018-q4-major/bin/../lib/gcc/arm-none-eabi/8.2.1/include-fixed",
-            "-isystem/usr/local/Caskroom/gcc-arm-embedded/8-2018-q4-major/gcc-arm-none-eabi-8-2018-q4-major/bin/../lib/gcc/arm-none-eabi/8.2.1/../../../../arm-none-eabi/include",
-            "-iquote./include",
-            "-iquote./include/./",
-            "-mcpu=cortex-a9",
-            "-mfpu=neon-fp16",
-            "-mfloat-abi=softfp",
-            "-D_POSIX_THREADS",
-            "-D_UNIX98_THREAD_MUTEX_ATTRIBUTES",
-            "-Os",
-            "-funwind-tables",
-            "-ffunction-sections",
-            "-fdata-sections",
-            "-fdiagnostics-color",
-            "--std=gnu++17",
-            "-o",
-            "bin/opcontrol.cpp.o",
-            "src/opcontrol.cpp"
-        ],
-        "directory": "/Users/pranavputta/Documents/vex",
-        "file": "src/opcontrol.cpp"
     },
     {
         "arguments": [
@@ -156,7 +156,39 @@
             "bin/controller.cpp.o",
             "src/controller.cpp"
         ],
-        "directory": "/Users/pranavputta/Documents/vex",
+        "directory": "/Users/pranavputta/Downloads/vex-turning-point-master",
         "file": "src/controller.cpp"
+    },
+    {
+        "arguments": [
+            "clang++",
+            "-c",
+            "-target",
+            "armv7ar-none-none-eabi",
+            "-isystem/usr/local/Caskroom/gcc-arm-embedded/8-2018-q4-major/gcc-arm-none-eabi-8-2018-q4-major/bin/../lib/gcc/arm-none-eabi/8.2.1/../../../../arm-none-eabi/include/c++/8.2.1",
+            "-isystem/usr/local/Caskroom/gcc-arm-embedded/8-2018-q4-major/gcc-arm-none-eabi-8-2018-q4-major/bin/../lib/gcc/arm-none-eabi/8.2.1/../../../../arm-none-eabi/include/c++/8.2.1/arm-none-eabi/thumb/v7+fp/softfp",
+            "-isystem/usr/local/Caskroom/gcc-arm-embedded/8-2018-q4-major/gcc-arm-none-eabi-8-2018-q4-major/bin/../lib/gcc/arm-none-eabi/8.2.1/../../../../arm-none-eabi/include/c++/8.2.1/backward",
+            "-isystem/usr/local/Caskroom/gcc-arm-embedded/8-2018-q4-major/gcc-arm-none-eabi-8-2018-q4-major/bin/../lib/gcc/arm-none-eabi/8.2.1/include",
+            "-isystem/usr/local/Caskroom/gcc-arm-embedded/8-2018-q4-major/gcc-arm-none-eabi-8-2018-q4-major/bin/../lib/gcc/arm-none-eabi/8.2.1/include-fixed",
+            "-isystem/usr/local/Caskroom/gcc-arm-embedded/8-2018-q4-major/gcc-arm-none-eabi-8-2018-q4-major/bin/../lib/gcc/arm-none-eabi/8.2.1/../../../../arm-none-eabi/include",
+            "-iquote./include",
+            "-iquote./include/./",
+            "-mcpu=cortex-a9",
+            "-mfpu=neon-fp16",
+            "-mfloat-abi=softfp",
+            "-D_POSIX_THREADS",
+            "-D_UNIX98_THREAD_MUTEX_ATTRIBUTES",
+            "-Os",
+            "-funwind-tables",
+            "-ffunction-sections",
+            "-fdata-sections",
+            "-fdiagnostics-color",
+            "--std=gnu++17",
+            "-o",
+            "bin/setup.cpp.o",
+            "src/setup.cpp"
+        ],
+        "directory": "/Users/pranavputta/Downloads/vex-turning-point-master",
+        "file": "src/setup.cpp"
     }
 ]
