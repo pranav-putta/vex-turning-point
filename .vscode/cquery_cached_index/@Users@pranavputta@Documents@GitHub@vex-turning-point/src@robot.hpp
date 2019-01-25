@@ -20,8 +20,13 @@ using namespace okapi;
 #define MTR_INTAKE 14
 #define MTR_PUNCHER 16
 
+#define SONIC_CLAW_TOP 1
+#define SONIC_CLAW_BOT 2
+
+#define LIFT_MAX_DELAY 5000
+
 // Motor Speed Definitions
-#define SPD_LIFT 150
+#define SPD_LIFT 200
 #define SPD_CLAW 50
 #define SPD_INTAKE 300
 
@@ -34,6 +39,9 @@ using namespace okapi;
 #define LIFT_H_GROUND -152
 #define LIFT_H_TARGET 20
 #define LIFT_H_FOLDED 0
+
+// Ultrasonic setConstants
+#define SONIC_CLAW_MAX_TURN 100
 
 // Enum definitions
 enum LockState { FREE, CURRENT, FIXED };
@@ -62,7 +70,10 @@ extern bool is_bl_reversed;
 extern bool is_br_reversed;
 extern bool is_tr_reversed;
 
-extern int direction, forward, yaw;
+extern bool override;
+
+extern int direction;
+extern double forward, yaw;
 extern double k_speed_forward;
 extern double k_speed_yaw;
 extern double k_speed_lift;
@@ -100,6 +111,9 @@ extern AsyncPosIntegratedController clawController;
 extern Controller master;
 extern Controller nigga;
 
+// Sensors
+extern ADIUltrasonic clawSonic;
+
 // Master Control
 extern ControllerButton unfoldLiftButton;
 extern ControllerButton descoreButton;
@@ -133,11 +147,15 @@ void driveToPoint(Point pt);
 void turnAngle(QAngle angle);
 void setIntakeState(IntakeState st);
 void setLiftState(LiftState st);
+void shootBall();
 void setConstants(double forward, double yaw, double lift);
 void flipCap(bool async = true);
 void lock();
 void descore();
 void pullUpLift();
+void waitUntilLiftSettled();
+void findCap();
+void driveIntoCap();
 odomData generateOdometryData();
 void updateOdometry();
 
@@ -157,3 +175,4 @@ void subpar();
 void autonRT();
 void autonBB();
 void autonRB();
+void skills();

@@ -8,12 +8,14 @@ bool is_bl_reversed = true;
 bool is_br_reversed = false;
 bool is_tr_reversed = false;
 
-int direction = 1, forward, yaw;
+int direction = 1;
+double forward = 1, yaw = 1;
 double k_speed_forward = 1;
 double k_speed_yaw = 0.8;
 double k_speed_lift = 1;
 
-// Puncher system
+// Sensors
+ADIUltrasonic clawSonic(SONIC_CLAW_TOP, SONIC_CLAW_BOT);
 
 // Lock system
 LockState clawLock = LockState::FREE;

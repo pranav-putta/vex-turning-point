@@ -27,12 +27,14 @@ void initializeOpControl() {
   mtr_dr_br.setReversed(is_br_reversed);
   mtr_dr_bl.setReversed(is_bl_reversed);
 
+  chassis.setMaxVelocity(200);
+
   double currentClawPos = mtr_claw.getPosition();
   clawLock = CURRENT;
   liftLock = FREE;
   liftState = LiftState::FOLDED;
 
-  k_speed_lift = 0.3;
+  k_speed_lift = 0.4;
 }
 
 /**
@@ -66,7 +68,7 @@ void master_macros() {
   }
 
   // Intake Macros
-  if (intakeStateButton.changedToPressed()) {
+  if (intakeStateButton.changedToReleased()) {
     if (intakeState == FORWARD || intakeState == BACKWARD) {
       intakeState = IntakeState::IDLE;
     } else {

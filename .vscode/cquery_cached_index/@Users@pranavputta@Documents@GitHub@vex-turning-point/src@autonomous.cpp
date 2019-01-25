@@ -34,12 +34,35 @@ void initializeAuton() {
 
 // top tile, blue
 void autonBT() {
+  shootBall();
+  setIntakeState(IntakeState::FORWARD);
   driveToPoint(Point{48_in, 0_in, 0_deg});
   reverseDrive();
   driveToPoint(Point{49_in, 0_in, 0_deg});
+  setIntakeState(IntakeState::IDLE);
   reverseDrive();
   turnAngle(-90_deg);
   driveToPoint(Point{88_in, 8_in, 0_deg});
+  pullUpLift();
+  reverseDrive();
+  driveToPoint(Point{116_in, 16_in, 0_deg});
+  turnAngle(90_deg);
+  driveToPoint(Point{48_in, 0_in, 0_deg});
+  reverseDrive();
+
+  shootBall();
+  driveToPoint(Point{88_in, 0_in, 0_deg});
+  reverseDrive();
+  pullUpLift();
+  setLiftState(LiftState::FOLDED);
+  driveToPoint(Point{88_in, 0_in, 0_deg});
+  reverseDrive();
+  driveToPoint(Point{49_in, 0_in, 0_deg});
+  setIntakeState(IntakeState::IDLE);
+  reverseDrive();
+  turnAngle(-90_deg);
+  driveToPoint(Point{88_in, 8_in, 0_deg});
+  pullUpLift();
   reverseDrive();
   driveToPoint(Point{116_in, 16_in, 0_deg});
   turnAngle(90_deg);
@@ -49,12 +72,17 @@ void autonBT() {
 
 // top tile, red
 void autonRT() {
+  shootBall();
+  setIntakeState(IntakeState::FORWARD);
+  turnAngle(-90_deg);
   driveToPoint(Point{48_in, 0_in, 0_deg});
   reverseDrive();
   driveToPoint(Point{49_in, 0_in, 0_deg});
+  setIntakeState(IntakeState::IDLE);
   reverseDrive();
   turnAngle(90_deg);
   driveToPoint(Point{88_in, 8_in, 0_deg});
+  pullUpLift();
   reverseDrive();
   driveToPoint(Point{116_in, 16_in, 0_deg});
   turnAngle(-90_deg);
@@ -64,12 +92,60 @@ void autonRT() {
 
 // back tile, blue
 void autonBB() {
+  setIntakeState(IntakeState::FORWARD);
+  driveToPoint(Point{48_in, 0_in, 0_deg});
+  pullUpLift();
+  turnAngle(90_deg);
+  reverseDrive();
+  driveToPoint(Point{30_in, 0_in, 0_deg});
+  setLiftState(LiftState::GROUND);
+  // Move forward until ultrasonic sees it really close
+  liftController.setMaxVelocity(100);
+  setLiftState(LiftState::FOLDED);
+  flipCap();
+  driveToPoint(Point{20_in, 0_in, 0_deg});
+  setLiftState(LiftState::MIDDLE);
+  // Rotate until ultrasonic finds it
+  setLiftState(LiftState::MIDDLE);
+  reverseDrive();
+  driveToPoint(Point{-10_in, 0_in, 0_deg});
+  setLiftState(LiftState::GROUND);
+  turnAngle(90_deg);
+}
 
+void skills() {
+  shootBall();
+  driveToPoint(Point{88_in, 0_in, 0_deg});
+  reverseDrive();
+  driveToPoint(Point{44_in, 0_in, 0_deg});
+  turnAngle(-90_deg);
+  setIntakeState(IntakeState::BACKWARD);
+  driveToPoint(Point{44_in, 0_in, 0_deg});
+  
 }
 
 // back tile, red
 void autonRB() {
-
+  setIntakeState(IntakeState::FORWARD);
+  driveToPoint(Point{48_in, 0_in, 0_deg});
+  pullUpLift();
+  turnAngle(-90_deg);
+  reverseDrive();
+  driveToPoint(Point{30_in, 0_in, 0_deg});
+  setLiftState(LiftState::GROUND);
+  findCap();
+  driveIntoCap();
+  liftController.setMaxVelocity(100);
+  setLiftState(LiftState::FOLDED);
+  flipCap();
+  driveToPoint(Point{20_in, 0_in, 0_deg});
+  setLiftState(LiftState::MIDDLE);
+  // Rotate until ultrasonic finds it
+  setLiftState(LiftState::MIDDLE);
+  reverseDrive();
+  driveToPoint(Point{-10_in, 0_in, 0_deg});
+  setLiftState(LiftState::GROUND);
+  turnAngle(-90_deg);
 }
 
 // sketchy auton
