@@ -6,7 +6,7 @@ void opcontrol() {
   while (true) {
     arcade();
     master_macros();
-    nigga_macros();
+    slave_macros();
     lock();
     pros::delay(10);
   }
@@ -120,7 +120,7 @@ void master_macros() {
   }
 }
 
-void nigga_macros() {
+void slave_macros() {
   /* Slave Controls */
 
   //  Reverse drive
