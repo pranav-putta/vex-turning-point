@@ -109,7 +109,7 @@ extern AsyncPosIntegratedController liftController;
 extern AsyncPosIntegratedController clawController;
 
 extern Controller master;
-extern Controller nigga;
+extern Controller slave;
 
 // Sensors
 extern ADIUltrasonic clawSonic;
@@ -165,7 +165,7 @@ void updateOdometry();
 
 void arcade();
 void master_macros();
-void nigga_macros();
+void slave_macros();
 
 // -------------------------------------------
 
